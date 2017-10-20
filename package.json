@@ -1,0 +1,23 @@
+{
+  "name": "myangular",
+  "version": "0.1.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "Gennadii_Kondratev",
+  "contributors": [],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-testem": "^0.5.22",
+    "sinon": "^2.3.2"
+  }
+}
