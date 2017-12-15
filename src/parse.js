@@ -198,7 +198,7 @@ AST.prototype.program = function() {
 };
 
 AST.prototype.primary = function() {
-    var primary;
+    var primary, next;
     
     if (this.expect('[')) {
         primary = this.arrayDeclaration();
@@ -212,7 +212,7 @@ AST.prototype.primary = function() {
         primary = this.constant();
     }
     
-    while (this.expect('.')) {
+    while (this.expect('.', '[')) {
         primary = {
             type: AST.MemberExpression,
             object: primary,
@@ -231,8 +231,8 @@ AST.prototype.identifier = function() {
     return {type: AST.Identifier, name: this.consume().text};
 };
 
-AST.prototype.expect = function(e) {
-    var token = this.peek(e);
+AST.prototype.expect = function(e1, e2, e3, e4) {
+    var token = this.peek(e1, e2, e3, e4);
     if(token) {
         return this.tokens.shift();
     }
@@ -286,12 +286,13 @@ AST.prototype.object = function() {
     return {type: AST.ObjectExpression, properties: properties};
 };
 
-AST.prototype.peek = function(e) {
+AST.prototype.peek = function(e1, e2, e3, e4) {
     var text;
     
     if (this.tokens.length > 0) {
         text = this.tokens[0].text;
-        if(text === e || !e) {
+        if(text === e1 || text === e2 || text === e3 || text === e4 ||
+                (!e1 && !e2 && !e3 && !e4)) {
             return this.tokens[0];
         }
     }
